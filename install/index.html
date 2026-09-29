@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>התקנת o2a Massing Studio</title>
+<link rel="icon" href="../icon-64.png">
+<style>
+  :root { --bg:#f6f5f2; --card:#fff; --ink:#1d1d1b; --mute:#6b6b66; --line:#e3e1dc; --acc:#e8762b; --acc-ink:#fff; --code:#f1efea; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#151514; --card:#1f1f1d; --ink:#ecebe7; --mute:#a3a29c; --line:#34332f; --code:#2a2926; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 system-ui, "Segoe UI", Arial, sans-serif; }
+  main { max-width:620px; margin:0 auto; padding:32px 16px 48px; }
+  header { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+  header img { width:56px; height:56px; border-radius:12px; }
+  h1 { font-size:22px; margin:0; }
+  header p { margin:0; color:var(--mute); font-size:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 18px; margin-bottom:16px; }
+  .label { font-size:13px; color:var(--mute); margin-bottom:6px; }
+  .idrow { display:flex; gap:8px; align-items:stretch; flex-wrap:wrap; }
+  code { direction:ltr; unicode-bidi:isolate; font:15px/1.4 ui-monospace, Consolas, monospace; background:var(--code); border-radius:8px; padding:10px 12px; flex:1 1 300px; user-select:all; word-break:break-all; text-align:left; }
+  button { background:var(--acc); color:var(--acc-ink); border:0; border-radius:8px; padding:10px 18px; font:inherit; font-weight:600; cursor:pointer; }
+  button:active { transform:translateY(1px); }
+  ol { margin:0; padding-inline-start:22px; }
+  ol li { margin:8px 0; }
+  .en { display:block; direction:ltr; unicode-bidi:isolate; font-weight:600; text-align:right; }
+  .note { font-size:14px; color:var(--mute); }
+  .note b { color:var(--ink); }
+  details { margin-top:8px; }
+  summary { cursor:pointer; color:var(--mute); font-size:14px; }
+  .ltr { direction:ltr; text-align:left; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="../icon-128.png" alt="">
+    <div>
+      <h1>o2a Massing Studio</h1>
+      <p>הוספת התוסף לפרויקט בפורמה</p>
+    </div>
+  </header>
+
+  <section class="card">
+    <div class="label">מזהה התוסף</div>
+    <div class="idrow">
+      <code id="extid">f2483523-5966-4ef0-b6f8-5dafb9fa1e09</code>
+      <button id="copy" type="button">העתק</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <ol>
+      <li>פותחים את הפרויקט בפורמה</li>
+      <li>פותחים את חנות התוספים: <span class="en">App Store</span></li>
+      <li>לוחצים על גלגל השיניים בפינה ובוחרים: <span class="en">Find extension by ID</span></li>
+      <li>מדביקים את המזהה ומאשרים</li>
+      <li>התוסף מופיע ברשימת התוספים של הפרויקט</li>
+    </ol>
+  </section>
+
+  <section class="card note">
+    <p><b>ההתקנה היא לכל פרויקט בנפרד.</b> בפרויקט שהתוסף כבר מותקן בו אין צורך להתקין שוב, גם ממחשב אחר עם אותו חשבון.</p>
+    <p>מתוך התוסף עצמו, כפתור השיתוף בראש החלונית, ליד ההגדרות, מעתיק את המזהה.</p>
+  </section>
+
+  <details class="card">
+    <summary>English</summary>
+    <ol class="ltr">
+      <li>Open the project in Forma</li>
+      <li>Open the <b>App Store</b></li>
+      <li>Click the gear icon → <b>Find extension by ID</b></li>
+      <li>Paste the ID above and confirm</li>
+    </ol>
+    <p class="ltr note">Extensions are installed per project. Inside the extension, the share icon next to Settings copies the ID.</p>
+  </details>
+</main>
+<script>
+  const btn = document.getElementById("copy");
+  btn.addEventListener("click", async () => {
+    const id = document.getElementById("extid").textContent.trim();
+    try { await navigator.clipboard.writeText(id); btn.textContent = "הועתק ✓"; }
+    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("extid")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "סמן והעתק Ctrl+C"; }
+    setTimeout(() => (btn.textContent = "העתק"), 2500);
+  });
+</script>
+</body>
+</html>
